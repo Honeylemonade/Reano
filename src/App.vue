@@ -1,10 +1,23 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Sidebar from "./components/Sidebar.vue"
 </script>
 
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="2" style="padding-bottom: 0;">
+        <Sidebar></Sidebar>
+      </v-col>
+      <v-col cols="10">
+        <router-view></router-view>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <style scoped>
+.v-container {
+  padding: 0;
+  margin: 0;
+}
 </style>
