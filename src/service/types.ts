@@ -1,12 +1,19 @@
+
 export class Article {
+    public id: String = crypto.randomUUID();
     public tilte: String | undefined;
     public content: String | undefined;
-    public createTime: number | undefined;
-    public updateTime: number | undefined;
+    public createTime: Date = new Date();
+    public updateTime: Date = new Date();
+
+    constructor(tilte: string, content: string) {
+        this.tilte = tilte
+        this.content = content
+    }
 }
 
 export enum WordState {
-    KNOW, UNKNOW
+    KNOWED, UNKNOWED
 }
 
 export class Word {

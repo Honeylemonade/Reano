@@ -1,0 +1,13 @@
+{
+  "articles": [
+    {
+      "id": "46ddf6b4-c8c4-41a3-bfd0-94cede2eaf08",
+      "tilte": "tt",
+      "content": "con",
+      "createTime": "2023-10-04T14:04:47.465Z",
+      "updateTime": "2023-10-04T14:04:47.465Z"
+    }
+  ],
+  "knowedWords": [],
+  "unknowedWords": []
+}

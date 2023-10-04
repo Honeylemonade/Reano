@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Sidebar from "./components/Sidebar.vue"
+import { } from './service/dbUtils'
 </script>
 
 <template>

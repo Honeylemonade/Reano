@@ -1,28 +1,23 @@
-//import { Article } from './types'
-const fs = require("fs")
+import { Article, Word } from './types'
 import { Low } from 'lowdb'
 import { JSONFile } from 'lowdb/node'
 
+// TODO 提取环境变量
 const DB_PATH = "./db.json"
 
-function init() {
-    // 如果文件不存在则创建文件则进行初始化
-    if (!fs.existsSync(DB_PATH)) {
-        console.log('文件不存在开始创建存储文件')
-    }
-}
-
 type Data = {
-    messages: string[]
+    articles: Article[],
+    knowedWords: Word[],
+    unknowedWords: Word[]
 }
 
-const defaultData: Data = { messages: [] }
-const adapter = new JSONFile<Data>('db.json')
-const db = new Low<Data>(adapter, defaultData)
-
-init()
-function save<T>(model: T) {
-    // 把对象转换为 json
+const initData: Data = {
+    articles: [],
+    knowedWords: [],
+    unknowedWords: []
 }
+
+const adapter = new JSONFile<Data>(DB_PATH)
+const db = new Low<Data>(adapter, initData)
 
 export default db

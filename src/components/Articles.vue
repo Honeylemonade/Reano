@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import db from '../service/dbUtils'
 import { onMounted } from 'vue'
+import { getArticles, addArticle } from '../service/modelService'
+import { Article } from '../service/types';
 
 onMounted(() => {
-    console.log(db)
+    const a = new Article("tt", 'con');
+    addArticle(a)
+    console.log(getArticles())
 })
 
 </script>
