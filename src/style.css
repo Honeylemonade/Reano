@@ -1,13 +1,13 @@
 html body {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 * {
-  padding: 0;
-  margin: 0;
-
+    font-family: 'Times New Roman', Times, serif;
+    padding: 0;
+    margin: 0;
 }
 
 #app {
-  min-height: 100vh;
+    min-height: 100vh;
 }

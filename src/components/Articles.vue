@@ -1,21 +1,20 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { getArticles, addArticle } from '../service/modelService'
-import { Article } from '../service/types';
-
-onMounted(() => {
-    const a = new Article("tt", 'con');
-    addArticle(a)
-    console.log(getArticles())
-})
+import ArticleList from './ArticleList.vue'
+import ArticleView from './ArticleView.vue'
 
 </script>
 
 <template>
-    <h1>文章 1</h1>
-    <h1>文章 1</h1>
-    <h1>文章 1</h1>
-    <h1>文章 1</h1>
+    <v-container>
+        <v-row no-gutters justify="center">
+            <v-col cols="4" style="padding-bottom: 0; border-style: solid;border-color: #dedede; border-width: 1px;">
+                <ArticleList></ArticleList>
+            </v-col>
+            <v-col cols="8">
+                <ArticleView></ArticleView>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <style scoped></style>

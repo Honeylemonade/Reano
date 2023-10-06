@@ -5,11 +5,13 @@ const router = useRouter()
 
 
 <template>
-    <div class="sideBar">
-        <v-list-item link title="文章库" @click='router.push("/Articles")'></v-list-item>
-        <v-list-item link title="单词本" @click='router.push("/Words")'></v-list-item>
+    <div>
+        <div class="drager" style="height: 50px;"></div>
+        <div class="sideBar">
+            <v-list-item link title="文章库" @click='router.push("/Articles")'></v-list-item>
+            <v-list-item link title="单词本" @click='router.push("/Words")'></v-list-item>
+        </div>
     </div>
-    <div class="drager"></div>
 </template>
 
 <style scoped>
@@ -17,14 +19,11 @@ const router = useRouter()
     background-color: #232527;
     color: aliceblue;
     margin: 0 auto;
-    padding: 30px 0px;
+    padding: 0px 0px;
     text-align: center;
-
 }
 
 .drager {
-    background-color: #232527;
-    min-height: 100vh;
     -webkit-app-region: drag;
 }
 </style>

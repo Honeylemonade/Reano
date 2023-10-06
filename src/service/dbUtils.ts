@@ -5,19 +5,20 @@ import { JSONFile } from 'lowdb/node'
 // TODO 提取环境变量
 const DB_PATH = "./db.json"
 
-type Data = {
+type Schema = {
     articles: Article[],
     knowedWords: Word[],
     unknowedWords: Word[]
 }
 
-const initData: Data = {
+const initData: Schema = {
     articles: [],
     knowedWords: [],
     unknowedWords: []
 }
 
-const adapter = new JSONFile<Data>(DB_PATH)
-const db = new Low<Data>(adapter, initData)
+const adapter = new JSONFile<Schema>(DB_PATH)
+const db = new Low<Schema>(adapter, initData)
+await db.read()
 
 export default db

@@ -5,8 +5,8 @@ import { } from './service/dbUtils'
 
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col cols="2" style="padding-bottom: 0;">
+    <v-row no-gutters justify="center">
+      <v-col cols="2" style="padding-bottom: 0;background-color: #232527;height:100vh;">
         <Sidebar></Sidebar>
       </v-col>
       <v-col cols="10">
