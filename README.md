@@ -5,9 +5,9 @@ Reano:Read &amp; Note for reading english papers or podcasts.
 
 该开源项目的灵感，起源于听 `Huberman lab podcast`。
 
-Huberman lab 地址：https://www.youtube.com/@hubermanlab）
+Huberman lab 地址：https://www.youtube.com
 
-
+![image-20231007120106299](https://pic-1306533678.cos.ap-nanjing.myqcloud.com//uPic/image-20231007120106299.png)
 
 **也许你也遇到过同样的需求：**
 
@@ -31,13 +31,12 @@ Huberman lab 地址：https://www.youtube.com/@hubermanlab）
 
 - [ ] 支持文章导入
   - [ ] 支持音视频多模态转换为文本
-  - [ ] 支持手动输入文章内容
-- [ ] 支持修改文章（修改模式）
+  - [x] 支持手动输入文章内容
+- [x] 支持修改文章
 - [ ] 支持阅读模式
-  - [ ] 鼠标悬停后显示单词含义
-  - [ ] 滑动/双击选中后，显示翻译、支持添加生词
-- [ ] 支持生词高亮（可选）
-- [ ] 支持划重点
+- [ ] 支持生词高亮，支持开关
+- [ ] 鼠标悬停在高亮处，显示单词含义
+- [ ] 滑动/双击选中后，显示翻译、支持添加生词
 
 ## 其他
 

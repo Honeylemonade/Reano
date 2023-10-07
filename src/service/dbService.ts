@@ -1,5 +1,5 @@
 import db from './dbUtils'
-import { Article, Word } from './types';
+import { Article, Word, WordState } from './types';
 
 
 export function addArticle(article: Article) {
@@ -21,7 +21,6 @@ export function getArticle(id: string): Article {
 
 export function updateArticle(article: Article) {
     let art = db.data.articles.find(e => e.id === article.id)
-    console.log(article);
     if (art == undefined) {
         console.error("不存在目标文章");
     } else {
@@ -44,4 +43,8 @@ export function addWord(word: Word) {
 
 export function getWords() {
     return db.data.words
+}
+
+export function getUnknownWords() {
+    return db.data.words.filter(e => e.state == WordState.UNKNOWED)
 }

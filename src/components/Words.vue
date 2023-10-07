@@ -28,7 +28,7 @@ function refresh() {
 <template>
     <span>所有单词 / </span>
     <span>排序 / </span>
-    <v-btn @click='addNewWord(new Word("episode", "一段经历，一段时期；（电视剧或广播剧的）集", []))' size="small" icon="mdi-plus"
+    <v-btn @click='addNewWord(new Word("comprehensive", "adj.综合性的，全面的；有理解力的", []))' size="small" icon="mdi-plus"
         variant="plain"></v-btn>
 
     <div v-show="showList">
