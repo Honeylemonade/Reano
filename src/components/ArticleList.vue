@@ -1,26 +1,39 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getArticles, addArticle } from '../service/modelService'
+import { ref, onMounted } from 'vue'
+import { getArticles, addArticle, deleteArticleById } from '../service/modelService'
 import moment from 'moment'
 import bus from '../service/bus'
 import { Article } from '../service/types';
 
 const articles = ref(getArticles())
-const currentIndex = ref(0)
+const currentArticleId = ref(articles.value[0].id)
 const showList = ref(true)
 
-function changeArticleCard(index: number) {
-    currentIndex.value = index
-    bus.emit('ArticleChanged', articles.value[index].id);
+// 用于显示view
+onMounted(() => {
+    changeArticleCard(articles.value[0].id)
+})
+
+function changeArticleCard(id: string) {
+    currentArticleId.value = id
+    bus.emit('ArticleChanged', id);
 }
 
 function addNewArticle() {
     addArticle(new Article("#标题", "#文章内容"))
+    changeArticleCard(articles.value[0].id)
+    refreshList()
+}
+
+function deleteArticle(id: string) {
+    deleteArticleById(id)
+    refreshList()
+}
+
+function refreshList() {
     articles.value = getArticles()
-    changeArticleCard(currentIndex.value)
     showList.value = false
     showList.value = true
-    currentIndex.value = 0
 }
 
 </script>
@@ -34,10 +47,13 @@ function addNewArticle() {
         </div>
         <v-virtual-scroll :items="['1']">
             <template v-if="showList">
-                <div v-for="(item, index) in articles">
-                    <v-card-item :class="index == currentIndex ? 'selectCard' : ''" @click="changeArticleCard(index)">
+                <div v-for="item in articles">
+                    <v-card-item :class="item.id == currentArticleId ? 'selectCard' : ''"
+                        @click="changeArticleCard(item.id)">
                         <div class="title">{{ item.title }}</div>
                         <v-card-subtitle>{{ moment(item.createTime).format('YYYY/MM/DD') }}</v-card-subtitle>
+                        <v-btn @click="deleteArticle(item.id)" size="small" icon="mdi-trash-can-outline"
+                            variant="plain"></v-btn>
                     </v-card-item>
                     <div style=" padding: 10px 10px;">
                         <v-divider></v-divider>

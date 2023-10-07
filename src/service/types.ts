@@ -1,8 +1,8 @@
 
 export class Article {
-    public id: String = crypto.randomUUID();
-    public title: String;
-    public content: String;
+    public id: string = crypto.randomUUID();
+    public title: string;
+    public content: string;
     public createTime: Date = new Date();
     public updateTime: Date = new Date();
 
@@ -17,8 +17,8 @@ export enum WordState {
 }
 
 export class Word {
-    public word: String;
-    public descrption: String;
+    public word: string;
+    public descrption: string;
     public state: WordState;
     public createTime: Date = new Date();
     public updateTime: Date = new Date();

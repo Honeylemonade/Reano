@@ -6,7 +6,7 @@ import bus from '../service/bus'
 
 
 const article = ref<Article>(new Article("", ""))
-function refreshArticle(id: String) {
+function refreshArticle(id: string) {
     article.value = getArticle(id)
 }
 
