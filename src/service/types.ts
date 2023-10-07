@@ -1,10 +1,10 @@
 
 export class Article {
-    public id: string = crypto.randomUUID();
-    public title: string;
-    public content: string;
-    public createTime: Date = new Date();
-    public updateTime: Date = new Date();
+    public id: string = crypto.randomUUID()
+    public title: string
+    public content: string
+    public createTime: Date = new Date()
+    public updateTime: Date = new Date()
 
     constructor(title: string, content: string) {
         this.title = title
@@ -17,17 +17,19 @@ export enum WordState {
 }
 
 export class Word {
-    public word: string;
-    public descrption: string;
-    public state: WordState;
-    public createTime: Date = new Date();
-    public updateTime: Date = new Date();
+    public id: string = crypto.randomUUID()
+    public word: string
+    public descrption: string
+    public sentences: string[]
+    public state: WordState
+    public createTime: Date = new Date()
+    public updateTime: Date = new Date()
 
-    constructor(word: string, descrption: string) {
+    constructor(word: string, descrption: string, sentences: string[]) {
         this.word = word
         this.descrption = descrption
+        this.sentences = sentences
         this.state = WordState.UNKNOWED
     }
-
 }
 

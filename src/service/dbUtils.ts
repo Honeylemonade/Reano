@@ -7,14 +7,12 @@ const DB_PATH = "./db.json"
 
 type Schema = {
     articles: Article[],
-    knowedWords: Word[],
-    unknowedWords: Word[]
+    words: Word[]
 }
 
 const initData: Schema = {
     articles: [],
-    knowedWords: [],
-    unknowedWords: []
+    words: []
 }
 
 const adapter = new JSONFile<Schema>(DB_PATH)

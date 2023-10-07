@@ -1,5 +1,5 @@
 import { onMounted } from 'vue';
-import { getArticles } from '../service/modelService';
+import { getArticles } from '../service/dbService';
 import { Article } from '../service/types';
 
 onMounted(() => {

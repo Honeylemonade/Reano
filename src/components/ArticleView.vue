@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import { getArticle, updateArticle } from '../service/modelService';
+import { ref } from 'vue'
+import { getArticle, updateArticle } from '../service/dbService';
 import { Article } from '../service/types';
 import bus from '../service/bus'
 
@@ -14,10 +14,6 @@ bus.on('ArticleChanged', function (id) {
     refreshArticle(id);
 });
 
-onMounted(() => {
-    let art = getArticle("46ddf6b4-c8c4-41a3-bfd0-94cede2eaf08")
-    article.value = art
-})
 </script>
 
 <template>
@@ -27,8 +23,8 @@ onMounted(() => {
                 <textarea style="resize:none;border:0;outline:none;" spellcheck="false" v-on:change="updateArticle(article)"
                     v-model="article.title"></textarea>
             </h2>
-            <textarea style="resize:none;border:0;outline:none;height: 80vh;" spellcheck="false" v-on:change="updateArticle(article)"
-                v-model="article.content"></textarea>
+            <textarea style="resize:none;border:0;outline:none;" spellcheck="false"
+                v-on:change="updateArticle(article)" v-model="article.content"></textarea>
         </div>
     </v-virtual-scroll>
 </template>
@@ -37,6 +33,7 @@ onMounted(() => {
 textarea {
     width: 100%;
     height: 100%;
+    white-space: pre-wrap;
 }
 
 .articleView {
@@ -45,3 +42,4 @@ textarea {
     height: 100vh
 }
 </style>
+../service/dbService

@@ -1,5 +1,5 @@
 import db from './dbUtils'
-import { Article } from './types';
+import { Article, Word } from './types';
 
 
 export function addArticle(article: Article) {
@@ -35,4 +35,13 @@ export function updateArticle(article: Article) {
 export function deleteArticleById(id: string) {
     db.data.articles.splice(db.data.articles.findIndex(e => e.id === id), 1)
     db.write()
+}
+
+export function addWord(word: Word) {
+    db.data.words.unshift(word)
+    db.write()
+}
+
+export function getWords() {
+    return db.data.words
 }

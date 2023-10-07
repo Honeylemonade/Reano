@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { getArticles, addArticle, deleteArticleById } from '../service/modelService'
+import { getArticles, addArticle, deleteArticleById } from '../service/dbService'
 import moment from 'moment'
 import bus from '../service/bus'
 import { Article } from '../service/types';
@@ -55,13 +55,12 @@ function refreshList() {
                         <v-btn @click="deleteArticle(item.id)" size="small" icon="mdi-trash-can-outline"
                             variant="plain"></v-btn>
                     </v-card-item>
-                    <div style=" padding: 10px 10px;">
+                    <div style=" padding: 5px 5px;">
                         <v-divider></v-divider>
                     </div>
                 </div>
             </template>
         </v-virtual-scroll>
-
     </div>
 </template>
 
@@ -91,12 +90,12 @@ function refreshList() {
 .title {
     font-weight: 700;
     font-family: 'Times New Roman', Times, serif;
-    /* overflow: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     text-transform: none;
     white-space: nowrap;
     word-break: normal;
-    word-wrap: break-word; */
+    word-wrap: break-word;
 }
 
 .v-container {
@@ -104,3 +103,4 @@ function refreshList() {
     margin: 0;
 }
 </style>
+../service/dbService
