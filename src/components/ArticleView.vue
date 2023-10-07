@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, nextTick } from 'vue'
-import { getArticle, updateArticle, getUnknownWords } from '../service/dbService';
+import { getArticle, getUnknownWords } from '../service/dbService';
 import { Article } from '../service/types';
 import bus from '../service/bus'
 
@@ -43,55 +43,35 @@ function refreshHighlightWord() {
 <template>
     <v-virtual-scroll :items="['1']" style="margin: 0 auto;">
         <div class="articleView">
-            <h2>
-                <textarea style="resize:none;border:0;outline:none;" spellcheck="false" v-on:change="updateArticle(article)"
-                    v-model="article.title"></textarea>
-            </h2>
-            <div style="position:relative;height: 200px;">
-                <textarea id="context" class="context" spellcheck="false" v-model="article.content"
-                    v-on:change="updateArticle(article)" v-on:input="refreshHighlightWord()">
-                </textarea>
-                <div id="cover" class="cover" @hov="console.log(1)"></div>
+            <h1>
+                {{ article.title }}
+            </h1>
+            <v-tooltip text="adj.综合性的，全面的；有理解力的" location="top">
+                <template v-slot:activator="{ props }">
+                    <span class="hightLightWord" v-bind="props">Tooltip</span>
+                </template>
+            </v-tooltip>
+
+            <div class="content">
+                {{ article.content }}
             </div>
         </div>
     </v-virtual-scroll>
 </template>
 
 <style scoped>
-textarea {
-    width: 100%;
-    height: 100%;
-    white-space: pre-wrap;
-}
-
 .hightLightWord {
     background-color: #d5fead;
     border-radius: 3px;
+}
+
+.content {
+    font-size: 20px;
 }
 
 .articleView {
     font-family: 'Times New Roman', Times, serif;
     padding: 20px 20px;
     height: 100vh
-}
-
-.context {
-    position: absolute;
-    z-index: 2;
-    resize: none;
-    border: 0;
-    outline: none;
-    background-color: beige;
-    color: black !important;
-    -webkit-text-fill-color: transparent;
-}
-
-.cover {
-    position: absolute;
-    z-index: 3;
-    /* opacity: 0.5; */
-    /* 让这个divtou */
-    pointer-events: none;
-    background-color: transparent;
 }
 </style>

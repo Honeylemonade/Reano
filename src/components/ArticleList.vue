@@ -55,9 +55,7 @@ function refreshList() {
                         <v-btn @click="deleteArticle(item.id)" size="small" icon="mdi-trash-can-outline"
                             variant="plain"></v-btn>
                     </v-card-item>
-                    <div style=" padding: 5px 5px;">
-                        <v-divider></v-divider>
-                    </div>
+                    <v-divider style=" padding: 0px 0px;"></v-divider>
                 </div>
             </template>
         </v-virtual-scroll>

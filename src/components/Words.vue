@@ -33,7 +33,7 @@ function refresh() {
 
     <div v-show="showList">
         <div v-for="(item, index) in words">
-            {{ index + 1 }}  |  {{ item.word }}
+            {{ index + 1 }} | {{ item.word }} | {{ item.descrption }}
         </div>
     </div>
 </template>
