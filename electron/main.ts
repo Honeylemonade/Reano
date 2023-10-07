@@ -26,7 +26,8 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
     },
-    titleBarStyle: 'hidden'
+    // 隐藏窗口栏
+    // titleBarStyle: 'hidden'
   })
 
   if (VITE_DEV_SERVER_URL) {

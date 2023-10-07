@@ -48,3 +48,12 @@ export function getWords() {
 export function getUnknownWords() {
     return db.data.words.filter(e => e.state == WordState.UNKNOWED)
 }
+
+export function getDescrptionByWord(word: string): string {
+    let res = db.data.words.find(e => e.word === word)
+    if (res != undefined) {
+        return res.descrption
+    } else {
+        return "未找到"
+    }
+}

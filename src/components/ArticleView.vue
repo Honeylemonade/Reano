@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, nextTick } from 'vue'
-import { getArticle, getUnknownWords } from '../service/dbService';
+import { ref } from 'vue'
+import { getArticle, getUnknownWords, getDescrptionByWord } from '../service/dbService';
 import { Article } from '../service/types';
 import bus from '../service/bus'
 
@@ -10,58 +10,51 @@ const unknownWords = ref(getUnknownWords())
 
 
 bus.on('ArticleChanged', function (id) {
-    refreshArticle(id)
+    refreshArticleView(id)
 });
 
-function refreshArticle(id: string) {
+function refreshArticleView(id: string) {
     article.value = getArticle(id)
-    // 需要dom渲染完后执行
-    nextTick(() => {
-        refreshHighlightWord()
-    })
 }
-
-function refreshHighlightWord() {
-    const cover = document.getElementById("cover")
-    const context = document.getElementById("context") as HTMLInputElement
-    if (cover == null || context == null) {
-        console.error("未找到目标元素")
-    } else {
-        // 找到高亮词
-        // 构建正则表达式
-        let regStr = "/"
-        unknownWords.value.forEach(e => regStr = regStr.concat("" + e.word + "|"))
-        regStr = regStr.slice(0, regStr.length - 1).concat("/gi")
-
-        cover.innerHTML = context.value.replace(eval(regStr), function (x) {
-            return '<span style=" background-color: #d5fead; border-radius: 3px;">' + x + '</span>';
-        })
-    }
+function getArticleRegSplitWords(): string[] {
+    let regStr = "/"
+    unknownWords.value.forEach(e => regStr = regStr.concat(e.word + "|"))
+    regStr = regStr.concat("./g")
+    const result = article.value.content.match(eval(regStr)) as string[]
+    // TODO 判断了多次正则
+    // console.log(result)
+    return result
 }
 </script>
 
 <template>
-    <v-virtual-scroll :items="['1']" style="margin: 0 auto;">
-        <div class="articleView">
-            <h1>
-                {{ article.title }}
-            </h1>
-            <v-tooltip text="adj.综合性的，全面的；有理解力的" location="top">
-                <template v-slot:activator="{ props }">
-                    <span class="hightLightWord" v-bind="props">Tooltip</span>
-                </template>
-            </v-tooltip>
+    <div>
+        <v-virtual-scroll :items="['1']" style="margin: 0 auto;">
+            <div class="articleView">
+                <h1>
+                    {{ article.title }}
+                </h1>
+                <div class="content">
+                    <span v-for="item in getArticleRegSplitWords()">
+                        <template v-if="item.length === 1">
+                            {{ item }}
+                        </template>
 
-            <div class="content">
-                {{ article.content }}
+                        <v-tooltip v-if="item.length != 1" :text="getDescrptionByWord(item)" location="top">
+                            <template v-slot:activator="{ props }">
+                                <span class="hightLightWord" v-bind="props">{{ item }}</span>
+                            </template>
+                        </v-tooltip>
+                    </span>
+                </div>
             </div>
-        </div>
-    </v-virtual-scroll>
+        </v-virtual-scroll>
+    </div>
 </template>
 
 <style scoped>
 .hightLightWord {
-    background-color: #d5fead;
+    background-color: #ffff7b;
     border-radius: 3px;
 }
 

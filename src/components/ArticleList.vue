@@ -9,6 +9,8 @@ const articles = ref(getArticles())
 const currentArticleId = ref(articles.value[0].id)
 const showList = ref(true)
 
+const tempArticle = ref<Article>(new Article("", ""))
+
 // 用于显示view
 onMounted(() => {
     changeArticleCard(articles.value[0].id)
@@ -20,7 +22,9 @@ function changeArticleCard(id: string) {
 }
 
 function addNewArticle() {
-    addArticle(new Article("#标题", "#文章内容"))
+    addArticle(new Article(tempArticle.value.title, tempArticle.value.content))
+    tempArticle.value.title = ""
+    tempArticle.value.content = ""
     changeArticleCard(articles.value[0].id)
     refreshList()
 }
@@ -42,7 +46,26 @@ function refreshList() {
     <div style="border-style: solid; border: 2px; border-color: darkgrey;">
         <div class="toolBar">
             <v-btn size="small" icon="mdi-sort" variant="plain"></v-btn>
-            <v-btn @click="addNewArticle()" size="small" icon="mdi-note-edit-outline" variant="plain"></v-btn>
+            <v-dialog style="width: 70%;">
+                <template v-slot:activator="{ props }">
+                    <v-btn v-bind="props" size="small" icon="mdi-note-edit-outline" variant="plain"></v-btn>
+                </template>
+
+                <template v-slot:default="{ isActive }">
+                    <v-card title="添加文章" style="padding: 0 20px;">
+                        <v-text-field v-model="tempArticle.title" label="请输入标题" variant="underlined"></v-text-field>
+                        <v-textarea v-model="tempArticle.content" label="请输入正文" variant="underlined"></v-textarea>
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+
+                            <v-btn text="确认" @click="isActive.value = false, addNewArticle()"></v-btn>
+                            <v-btn text="取消" @click="isActive.value = false"></v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </template>
+            </v-dialog>
+
+
             <v-btn size="small" icon="mdi-magnify" variant="plain"></v-btn>
         </div>
         <v-virtual-scroll :items="['1']">
@@ -73,11 +96,6 @@ function refreshList() {
     background: linear-gradient(to right,
             #3e75c5 5px,
             #eff1f2 5px);
-}
-
-.toolBar {
-    height: 10vh;
-    height: 50px;
 }
 
 .v-virtual-scroll {
