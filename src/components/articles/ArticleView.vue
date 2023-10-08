@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getArticle, getUnknownWords, getDescrptionByWord } from '../service/dbService';
-import { Article } from '../service/types';
-import bus from '../service/bus'
+import { getArticle, getUnknownWords, getDescrptionsByWord } from '../../service/dbService';
+import { Article } from '../../service/types';
+import bus from '../../service/bus'
+import TranslateCard from './TranslateCard.vue'
 
 
 const article = ref<Article>(new Article("", ""))
 const unknownWords = ref(getUnknownWords())
-
+const curSelectText = ref("impact")
 
 bus.on('ArticleChanged', function (id) {
     refreshArticleView(id)
@@ -25,6 +26,16 @@ function getArticleRegSplitWords(): string[] {
     // console.log(result)
     return result
 }
+
+function selectText() {
+    const selecter = window.getSelection();
+    if (selecter) {
+        var selectText = selecter.toString();
+        if (selectText != null && selectText.trim() != "") {
+            curSelectText.value = selectText
+        }
+    }
+}
 </script>
 
 <template>
@@ -34,13 +45,14 @@ function getArticleRegSplitWords(): string[] {
                 <h1>
                     {{ article.title }}
                 </h1>
-                <div class="content">
+                <TranslateCard :text="curSelectText"></TranslateCard>
+                <div class="content" @click="selectText()">
                     <span v-for="item in getArticleRegSplitWords()">
                         <template v-if="item.length === 1">
                             {{ item }}
                         </template>
 
-                        <v-tooltip v-if="item.length != 1" :text="getDescrptionByWord(item)" location="top">
+                        <v-tooltip v-if="item.length != 1" :text="getDescrptionsByWord(item).join('；')" location="top">
                             <template v-slot:activator="{ props }">
                                 <span class="hightLightWord" v-bind="props">{{ item }}</span>
                             </template>

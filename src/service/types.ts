@@ -19,17 +19,16 @@ export enum WordState {
 export class Word {
     public id: string = crypto.randomUUID()
     public word: string
-    public descrption: string
+    public descrptions: string[]
     public sentences: string[]
     public state: WordState
     public createTime: Date = new Date()
     public updateTime: Date = new Date()
 
-    constructor(word: string, descrption: string, sentences: string[]) {
+    constructor(word: string, descrption: string[], sentences: string[]) {
         this.word = word
-        this.descrption = descrption
+        this.descrptions = descrption
         this.sentences = sentences
         this.state = WordState.UNKNOWED
     }
 }
-

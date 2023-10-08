@@ -22,4 +22,13 @@ export default defineConfig({
       renderer: {},
     }),
   ],
+  server: {
+    proxy: {
+      "/youdao": {
+        target: "https://openapi.youdao.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/youdao/, ""),
+      },
+    },
+  }
 })

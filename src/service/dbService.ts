@@ -49,11 +49,16 @@ export function getUnknownWords() {
     return db.data.words.filter(e => e.state == WordState.UNKNOWED)
 }
 
-export function getDescrptionByWord(word: string): string {
+export function getDescrptionsByWord(word: string): string[] {
     let res = db.data.words.find(e => e.word === word)
     if (res != undefined) {
-        return res.descrption
+        return res.descrptions
     } else {
-        return "未找到"
+        return ["未找到"]
     }
+}
+
+export function deleteWordByWord(word: string) {
+    db.data.words.splice(db.data.words.findIndex(e => e.word === word), 1)
+    db.write()
 }

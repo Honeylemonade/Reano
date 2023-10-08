@@ -1,22 +1,27 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { addWord, getWords } from '../service/dbService'
-import { Word } from '../service/types';
+import { addWord, getWords, deleteWordByWord } from '../../service/dbService'
+import { Word } from '../../service/types';
 
 
 const words = ref()
 const showList = ref(true)
-const tempWord = ref<Word>(new Word("", "", []))
+const tempWord = ref<Word>(new Word("", [], []))
 
 onMounted(() => {
     words.value = getWords()
 })
 
 function addNewWord() {
-    addWord(new Word(tempWord.value.word, tempWord.value.descrption, tempWord.value.sentences))
+    addWord(new Word(tempWord.value.word, tempWord.value.descrptions, tempWord.value.sentences))
     tempWord.value.word = ""
-    tempWord.value.descrption = ""
+    tempWord.value.descrptions = []
     tempWord.value.sentences = []
+    refresh()
+}
+
+function deleteWord(word: string) {
+    deleteWordByWord(word)
     refresh()
 }
 
@@ -40,7 +45,7 @@ function refresh() {
         <template v-slot:default="{ isActive }">
             <v-card title="添加单词" style="padding: 0 20px;">
                 <v-text-field v-model="tempWord.word" label="请输入单词" variant="underlined"></v-text-field>
-                <v-text-field v-model="tempWord.descrption" label="请输入描述" variant="underlined"></v-text-field>
+                <v-text-field v-model="tempWord.descrptions[0]" label="请输入描述" variant="underlined"></v-text-field>
                 <v-card-actions>
                     <v-spacer></v-spacer>
 
@@ -50,11 +55,29 @@ function refresh() {
             </v-card>
         </template>
     </v-dialog>
-    <div v-show="showList">
-        <div v-for="(item, index) in words">
-            {{ index + 1 }} | {{ item.word }} | {{ item.descrption }}
-        </div>
-    </div>
+
+
+
+    <v-table>
+        <thead>
+            <tr>
+                <th class="text-left">序号</th>
+                <th class="text-left">内容</th>
+                <th class="text-left">解释</th>
+                <th class="text-left">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template v-if="showList">
+                <tr v-for="(item, index) in words" :key="index">
+                    <td> {{ index + 1 }}</td>
+                    <td>{{ item.word }}</td>
+                    <td> {{ item.descrptions }}</td>
+                    <td> <v-btn color="error" @click="deleteWord(item.word)">删除</v-btn></td>
+                </tr>
+            </template>
+        </tbody>
+    </v-table>
 </template>
 
 <style scoped></style>

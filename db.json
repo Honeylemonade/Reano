@@ -52,67 +52,37 @@
   ],
   "words": [
     {
-      "id": "2f982103-f42b-44e7-a925-433e8498c100",
-      "word": "aa",
-      "descrption": "as",
+      "id": "b3e4caa4-e72f-4b94-93e0-de2d9c41f5ce",
+      "word": "describe",
+      "descrptions": [
+        "v. 描述，形容；做……运动，形成……形状"
+      ],
       "sentences": [],
       "state": 1,
-      "createTime": "2023-10-07T15:40:01.574Z",
-      "updateTime": "2023-10-07T15:40:01.574Z"
+      "createTime": "2023-10-08T05:18:40.945Z",
+      "updateTime": "2023-10-08T05:18:40.945Z"
     },
     {
-      "id": "0ea5f504-1191-4366-868b-148edb92ea27",
-      "word": "hahah",
-      "descrption": "真好",
+      "id": "956a6bfe-6038-4e8c-aeb4-65427cb98d04",
+      "word": "behavioral",
+      "descrptions": [
+        "adj. 行为的"
+      ],
       "sentences": [],
       "state": 1,
-      "createTime": "2023-10-07T15:38:17.431Z",
-      "updateTime": "2023-10-07T15:38:17.431Z"
+      "createTime": "2023-10-08T05:15:58.487Z",
+      "updateTime": "2023-10-08T05:15:58.487Z"
     },
     {
-      "id": "364491e6-9086-42d9-a97e-cb4fe5821661",
-      "word": "comprehensive",
-      "descrption": "adj.综合性的，全面的；有理解力的",
+      "id": "82490544-871f-451c-b5c0-7726b479c4a1",
+      "word": "customize",
+      "descrptions": [
+        "v. 订制，改制（以满足顾主的需要）"
+      ],
       "sentences": [],
       "state": 1,
-      "createTime": "2023-10-07T15:31:36.933Z",
-      "updateTime": "2023-10-07T15:31:36.933Z"
-    },
-    {
-      "id": "b278859f-219a-41e5-9c62-7ccbdcdfbfa1",
-      "word": "comprehensive",
-      "descrption": "adj.综合性的，全面的；有理解力的",
-      "sentences": [],
-      "state": 1,
-      "createTime": "2023-10-07T05:32:29.529Z",
-      "updateTime": "2023-10-07T05:32:29.529Z"
-    },
-    {
-      "id": "5e4fab55-0620-49e7-8890-4702208as911",
-      "word": "shift work",
-      "descrption": "轮班工作",
-      "sentences": [],
-      "state": 1,
-      "createTime": "2023-10-07T02:13:45.238Z",
-      "updateTime": "2023-10-07T02:13:45.238Z"
-    },
-    {
-      "id": "747bde83-25cf-43e2-9089-91c8810b5fbb",
-      "word": "comprehensive",
-      "descrption": "adj.综合性的，全面的；有理解力的",
-      "sentences": [],
-      "state": 0,
-      "createTime": "2023-10-07T04:57:02.031Z",
-      "updateTime": "2023-10-07T04:57:02.031Z"
-    },
-    {
-      "id": "5e4fab55-0620-49e7-8890-4702208ac911",
-      "word": "episode",
-      "descrption": "一段经历，一段时期；（电视剧或广播剧的）集",
-      "sentences": [],
-      "state": 1,
-      "createTime": "2023-10-07T02:13:45.238Z",
-      "updateTime": "2023-10-07T02:13:45.238Z"
+      "createTime": "2023-10-08T04:45:00.919Z",
+      "updateTime": "2023-10-08T04:45:00.919Z"
     }
   ]
 }

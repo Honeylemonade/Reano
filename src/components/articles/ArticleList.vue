@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { getArticles, addArticle, deleteArticleById } from '../service/dbService'
+import { getArticles, addArticle, deleteArticleById } from '../../service/dbService'
 import moment from 'moment'
-import bus from '../service/bus'
-import { Article } from '../service/types';
+import bus from '../../service/bus'
+import { Article } from '../../service/types';
 
 const articles = ref(getArticles())
 const currentArticleId = ref(articles.value[0].id)
@@ -99,7 +99,6 @@ function refreshList() {
 }
 
 .v-virtual-scroll {
-    /* height="90vh" */
     height: 90vh;
 }
 

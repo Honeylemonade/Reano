@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Articles from "./components/Articles.vue"
-import Words from "./components/Words.vue"
+import Articles from './components/articles/Articles.vue'
+import Words from './components/words/Words.vue'
 
 const routes = [
     {
