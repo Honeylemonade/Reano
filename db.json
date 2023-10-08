@@ -52,6 +52,17 @@
   ],
   "words": [
     {
+      "id": "80fc481a-ebf0-4e47-8060-c5e06376c6ce",
+      "word": "episode",
+      "descrptions": [
+        "n. 一段经历，一段时期；（电视剧或广播剧的）集，一集；疾病的发作，发病；插句，插段；（希腊悲剧中）两段合唱之间的部分"
+      ],
+      "sentences": [],
+      "state": 1,
+      "createTime": "2023-10-08T09:02:55.553Z",
+      "updateTime": "2023-10-08T09:02:55.553Z"
+    },
+    {
       "id": "b3e4caa4-e72f-4b94-93e0-de2d9c41f5ce",
       "word": "describe",
       "descrptions": [
