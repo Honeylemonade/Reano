@@ -4,16 +4,14 @@ import { } from './service/dbUtils'
 </script>
 
 <template>
-  <v-container>
     <v-row no-gutters justify="center">
-      <v-col cols="2" style="padding-bottom: 0;background-color: #232527;height:100vh;">
+      <v-col cols="2" style="background-color: #232527;height:100vh;">
         <Sidebar></Sidebar>
       </v-col>
       <v-col cols="10">
         <router-view></router-view>
       </v-col>
     </v-row>
-  </v-container>
 </template>
 
 <style scoped>

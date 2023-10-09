@@ -8,7 +8,9 @@ import TranslateCard from './TranslateCard.vue'
 
 const article = ref<Article>(new Article("", ""))
 const unknownWords = ref(getUnknownWords())
-const curSelectText = ref("impact")
+const curSelectText = ref("")
+const curSelectX = ref(0)
+const curSelectY = ref(0)
 
 bus.on('ArticleChanged', function (id) {
     refreshArticleView(id)
@@ -27,7 +29,7 @@ function getArticleRegSplitWords(): string[] {
     return result
 }
 
-function selectText() {
+function selectText($event: { x: number; y: number; }) {
     const selecter = window.getSelection();
     if (selecter) {
         var selectText = selecter.toString();
@@ -35,6 +37,8 @@ function selectText() {
             curSelectText.value = selectText
         }
     }
+    curSelectX.value = $event.x
+    curSelectY.value = $event.y
 }
 </script>
 
@@ -45,8 +49,8 @@ function selectText() {
                 <h1>
                     {{ article.title }}
                 </h1>
-                <TranslateCard :text="curSelectText"></TranslateCard>
-                <div class="content" @click="selectText()">
+                <TranslateCard :text="curSelectText" :x="curSelectX" :y="curSelectY"></TranslateCard>
+                <div class="content" @click="selectText($event)">
                     <span v-for="item in getArticleRegSplitWords()">
                         <template v-if="item.length === 1">
                             {{ item }}

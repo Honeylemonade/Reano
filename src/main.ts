@@ -20,13 +20,8 @@ const vuetify = createVuetify({
 // Vuerouter
 import router from './route'
 
-// Pinia
-import { createPinia } from 'pinia'
-const pinia = createPinia()
-
 
 createApp(App)
   .use(vuetify)
   .use(router)
-  .use(pinia)
   .mount('#app')

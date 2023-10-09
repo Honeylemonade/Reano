@@ -10,12 +10,15 @@ const props = defineProps({
     text: {
         type: String,
         default: "空"
-    }
+    },
+    x: Number,
+    y: Number
 })
-
-watch(props, newProps => {
-    translate(newProps.text).then(e => {
+const show = ref(false)
+watch(() => props.text, newProps => {
+    translate(newProps).then(e => {
         translateResult.value = e
+        show.value = true
     })
 })
 
@@ -23,9 +26,7 @@ watch(props, newProps => {
 function addNewWord() {
     let res = translateResult.value
     if (res) {
-        let w = new Word(res.content, res.explains, [])
-        console.log(w)
-        addWord(w)
+        addWord(new Word(res.content, res.explains, []))
     }
 }
 
@@ -33,7 +34,12 @@ function addNewWord() {
 </script>
 
 <template>
-    <v-card>
+    <!-- // TODO 卡片显示位置优化 -->
+    <v-card v-if="show" @mouseleave="show = false" :style="{
+        'position': 'fixed',
+        'left': props.x + 'px',
+        'top': props.y + 'px'
+    }">
         <v-card-text class="card-text">
             <span class="text-h4" style="font-weight: bolder;">
                 {{ translateResult?.content }}
@@ -51,7 +57,6 @@ function addNewWord() {
             <span style="color: gray;">网络解释:</span>
             <span v-for="item in translateResult?.translation"><br> {{ item }}</span>
         </v-card-text>
-
     </v-card>
 </template>
 
